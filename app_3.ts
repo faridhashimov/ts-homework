@@ -42,7 +42,12 @@ const posts: IPosts[] = [
     },
 ]
 
-const convertArrayToObject = (array: IPosts[], key: keyof IPosts) => {
+type NormalizedPosts = { [key: string]: IPosts }
+
+const convertArrayToObject = (
+    array: IPosts[],
+    key: keyof IPosts
+): NormalizedPosts => {
     const initialValue = {}
     return array.reduce((obj, item) => {
         return {
@@ -53,7 +58,7 @@ const convertArrayToObject = (array: IPosts[], key: keyof IPosts) => {
 }
 
 interface INormalize {
-    byId: object
+    byId: NormalizedPosts
     allIds: string[]
 }
 
@@ -66,6 +71,7 @@ const normalizeData = (unnormalizedData: IPosts[]): INormalize => {
 }
 
 console.log(normalizeData(posts))
+
 /**
  * {
  *    byId: {

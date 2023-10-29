@@ -1,6 +1,6 @@
 const COMMENTS_URL: string = 'https://jsonplaceholder.typicode.com/comments'
 
-interface ICommments {
+interface IComments {
     postId: number
     id: number
     name: string
@@ -8,10 +8,10 @@ interface ICommments {
     body: string
 }
 
-const getData = async (url: string): Promise<ICommments[]> => {
+const getData = async <T extends string, K extends IComments>(url: T): Promise<K[]> => {
     // Your code here...
     const data: Response = await fetch(url)
-    const comments: ICommments[] = await data.json()
+    const comments: K[] = await data.json()
     return comments
 }
 

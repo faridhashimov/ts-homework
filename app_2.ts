@@ -11,10 +11,11 @@ const totalPrice = ({
     isInstallment,
     months,
 }: IPrice): number => {
+    let discountedPrice = price - price * (discount / 100)
     if (isInstallment) {
-        return (price - price * (discount / 100)) / months
+        return discountedPrice / months
     } else {
-        return price - price * (discount / 100)
+        return discountedPrice
     }
 }
 
